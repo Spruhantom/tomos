@@ -1,0 +1,16 @@
+pkgname=tomphone
+pkgver=0.1.0
+pkgrel=1
+pkgdesc='A keyboard-friendly SIP softphone for Omarchy'
+arch=('x86_64')
+url='https://github.com/baresip/baresip'
+license=('MIT')
+depends=('qt6-base' 'qt6-declarative' 'baresip' 'libpulse')
+makedepends=('qt6-base' 'qt6-declarative')
+source=('tomphone.desktop' 'tomphone.svg' 'tomphone')
+sha256sums=('SKIP' 'SKIP' 'SKIP')
+package() {
+  install -Dm755 "$srcdir/tomphone" "$pkgdir/usr/bin/tomphone"
+  install -Dm644 "$srcdir/tomphone.desktop" "$pkgdir/usr/share/applications/tomphone.desktop"
+  install -Dm644 "$srcdir/tomphone.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/tomphone.svg"
+}

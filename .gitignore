@@ -1,0 +1,5 @@
+/build/
+/pkgbuild/*.pkg.tar.*
+/pkgbuild/src/
+/pkgbuild/pkg/
+/pkgbuild/tomphone
