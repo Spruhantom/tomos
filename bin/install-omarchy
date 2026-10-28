@@ -16,6 +16,12 @@ if ! command -v git >/dev/null 2>&1; then
   exit 1
 fi
 
+# If GitHub CLI is already authenticated, configure Git to use its credentials
+# so private repositories can be cloned without embedding a token in this script.
+if command -v gh >/dev/null 2>&1 && gh auth status >/dev/null 2>&1; then
+  gh auth setup-git
+fi
+
 sudo pacman -S --needed --noconfirm base-devel git qt6-base qt6-declarative baresip libpulse
 
 mkdir -p "$(dirname "$APP_DIR")" "$BIN_DIR" "$DESKTOP_DIR"
