@@ -1,6 +1,6 @@
 # Tomphone
 
-Tomphone is a compact Omarchy desktop softphone for registering a SIP account and making or receiving audio calls. It uses Baresip for SIP and audio, with its control interface bound to localhost.
+Tomphone is a compact Omarchy desktop softphone for registering a SIP account and making or receiving audio calls. It uses Baresip for SIP and audio, with its control interface bound to localhost. Its window colors, accent, light or dark mode, text selection, and corner radius follow the active Omarchy theme.
 
 ## Build and install
 
