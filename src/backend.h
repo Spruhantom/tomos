@@ -10,6 +10,7 @@ class Backend : public QObject {
     Q_PROPERTY(bool configured READ configured NOTIFY changed)
     Q_PROPERTY(bool running READ running NOTIFY changed)
     Q_PROPERTY(bool inCall READ inCall NOTIFY changed)
+    Q_PROPERTY(bool muted READ muted NOTIFY changed)
     Q_PROPERTY(QString number READ number WRITE setNumber NOTIFY changed)
 public:
     explicit Backend(QObject *parent = nullptr);
@@ -18,6 +19,7 @@ public:
     bool configured() const { return m_configured; }
     bool running() const { return m_process.state() != QProcess::NotRunning; }
     bool inCall() const { return m_inCall; }
+    bool muted() const { return m_muted; }
     QString number() const { return m_number; }
     void setNumber(const QString &n) { m_number = n; emit changed(); }
     Q_INVOKABLE void saveAccount(const QString &server, const QString &username, const QString &password);
