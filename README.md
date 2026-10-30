@@ -1,12 +1,12 @@
 # Tomphone
 
-Tomphone is a compact Omarchy desktop softphone for registering a SIP account and making or receiving audio calls. It uses Baresip for SIP and audio, with its control interface bound to localhost. Its window colors, accent, light or dark mode, text selection, and corner radius follow the active Omarchy theme.
+Tomphone is a compact Omarchy desktop softphone for registering a SIP account and making or receiving audio calls. Its updated dialer puts the number pad, call controls, and connection status in one focused window, with an account panel for setup. Colors, accent, light or dark mode, text selection, and corner radius follow the active Omarchy theme.
 
 ## Build and install
 
 Run `bin/build` to compile. Run `bin/install` to build and install the Arch package. The launcher entry is **Tomphone**.
 
-On first launch, enter your SIP server, username, and password. Calls can use a number or full SIP address. Space starts a call or hangs up; Q quits.
+On first launch, enter your SIP server, username, and password. Use the dial pad or enter a number or full SIP address. Space starts a call or hangs up; Q quits.
 
 ## Requirements
 
