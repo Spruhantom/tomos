@@ -17,14 +17,6 @@ if ! command -v pacman >/dev/null 2>&1; then
   exit 1
 fi
 
-if ! command -v gh >/dev/null 2>&1 || ! gh auth status >/dev/null 2>&1; then
-  echo "The Tomphone repository is private. Install GitHub CLI and authenticate first:" >&2
-  echo "  sudo pacman -S --needed github-cli" >&2
-  echo "  gh auth login" >&2
-  exit 1
-fi
-
-gh auth setup-git
 sudo pacman -S --needed --noconfirm base-devel git qt6-base qt6-declarative baresip libpulse
 
 mkdir -p "$(dirname "$APP_DIR")" "$BIN_DIR" "$DESKTOP_DIR" "$ICON_DIR"
