@@ -4,6 +4,32 @@ Tomphone is a compact Omarchy desktop softphone for registering a SIP account an
 
 ## Build and install
 
+### One-line install on Omarchy
+
+Tomphone's GitHub repository is private, so authenticate with GitHub CLI first:
+
+```bash
+gh auth login
+```
+
+Then run this one-line installer:
+
+```bash
+curl -fsSL -H "Authorization: Bearer $(gh auth token)" -H "Accept: application/vnd.github.raw" https://api.github.com/repos/Spruhantom/tomos/contents/bin/install-omarchy | bash
+```
+
+The installer installs the required Arch packages, downloads or updates the source, builds Tomphone, and installs the app launcher and icon. It targets x86-64 Omarchy/Arch Linux.
+
+Launch Tomphone with:
+
+```bash
+tomphone
+```
+
+If the command is not on your PATH, run `~/.local/bin/tomphone`.
+
+### Manual install
+
 Run `bin/build` to compile. Run `bin/install` to build and install the Arch package. The launcher entry is **Tomphone**.
 
 On first launch, enter your SIP server, username, and password. Use the dial pad or enter a number or full SIP address. Space starts a call or hangs up; Q quits.
