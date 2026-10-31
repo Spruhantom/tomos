@@ -4,16 +4,10 @@ Tomphone is a compact Linux desktop softphone for registering a SIP account and 
 
 ## One-line install (Arch Linux / Omarchy)
 
-The repository is private. Sign in with GitHub CLI first:
+Run this command in a terminal:
 
 ```bash
-gh auth login
-```
-
-Then run:
-
-```bash
-curl -fsSL -H "Authorization: Bearer $(gh auth token)" -H "Accept: application/vnd.github.raw" https://api.github.com/repos/Spruhantom/tomos/contents/bin/install-arch | bash
+curl -fsSL https://raw.githubusercontent.com/Spruhantom/tomos/main/bin/install-arch | bash
 ```
 
 This installer targets x86-64 Arch Linux and Arch-based distributions. It installs the build dependencies with pacman, clones or updates the source, builds Tomphone, and installs a per-user launcher and icon. It uses sudo for package installation.
