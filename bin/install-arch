@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+REPO="https://github.com/Spruhantom/tomos.git"
+APP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/tomphone"
+BIN_DIR="$HOME/.local/bin"
+DESKTOP_DIR="$HOME/.local/share/applications"
+ICON_DIR="$HOME/.local/share/icons/hicolor/scalable/apps"
+
+if [[ "$(uname -m)" != "x86_64" ]]; then
+  echo "Tomphone currently supports x86_64 Arch Linux." >&2
+  exit 1
+fi
+
+if ! command -v pacman >/dev/null 2>&1; then
+  echo "This installer requires Arch Linux or an Arch-based distribution with pacman." >&2
+  exit 1
+fi
+
+if ! command -v gh >/dev/null 2>&1; || ! gh auth status >/dev/null 2>&1; then
+  echo "The Tomphone repository is private. Install GitHub CLI and authenticate first:" >&2
+  echo "  sudo pacman -S --needed github-cli" >&2
+  echo "  gh auth login" >&2
+  exit 1
+fi
+
+gh auth setup-git
+sudo pacman -S --needed --noconfirm base-devel git qt6-base qt6-declarative baresip libpulse
+
+mkdir -p "$(dirname "$APP_DIR")" "$BIN_DIR" "$DESKTOP_DIR" "$ICON_DIR"
+if [[ -d "$APP_DIR/.git" ]]; then
+  git -C "$APP_DIR" pull --ff-only
+else
+  git clone "$REPO" "$APP_DIR"
+fi
+
+cd "$APP_DIR"
+chmod +x bin/build
+./bin/build
+
+install -Dm755 "$APP_DIR/build/tomphone" "$BIN_DIR/tomphone"
+install -Dm644 "$APP_DIR/pkgbuild/tomphone.desktop" "$DESKTOP_DIR/tomphone.desktop"
+install -Dm644 "$APP_DIR/pkgbuild/tomphone.svg" "$ICON_DIR/tomphone.svg"
+
+if ! printf '%s' "$PATH" | tr ':' '\n' | grep -Fxq "$BIN_DIR"; then
+  echo "Add $BIN_DIR to PATH, or launch with: $BIN_DIR/tomphone"
+fi
+
+echo "Tomphone installation complete. Launch with: $BIN_DIR/tomphone"
